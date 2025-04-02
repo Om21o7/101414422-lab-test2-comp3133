@@ -2,14 +2,7 @@
     "routes": [
       {
         "src": "/mission/:id",
-        "dest": "/mission/:id",
-        "prerender": {
-          "getPrerenderParams": [
-            { "id": "1" },
-            { "id": "2" },
-            { "id": "3" }
-          ]
-        }
+        "dest": "/mission/:id"
       }
     ]
   }
