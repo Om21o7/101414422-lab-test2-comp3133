@@ -14,6 +14,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class MissiondetailsComponent implements OnInit {
   mission: any;
+  loading: boolean = true; // to show a loading indicator
+  error: string = ''; // to show error messages
 
   constructor(
     private route: ActivatedRoute,
@@ -21,9 +23,29 @@ export class MissiondetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.spacexService.getMissionByFlightNumber(id).subscribe(data => {
-      this.mission = data;
-    });
+    const id = this.route.snapshot.paramMap.get('id'); 
+
+    if (id) {
+      const missionId = Number(id);  // Convert id to number
+      if (isNaN(missionId)) {
+        this.error = 'Invalid Mission ID';
+        this.loading = false;
+        return;
+      }
+
+      this.spacexService.getMissionByFlightNumber(missionId).subscribe(
+        data => {
+          this.mission = data;
+          this.loading = false; // stop loading once the data is fetched
+        },
+        err => {
+          this.error = 'Failed to load mission data. Please try again later.';
+          this.loading = false;
+        }
+      );
+    } else {
+      this.error = 'Mission ID not found.';
+      this.loading = false;
+    }
   }
 }
