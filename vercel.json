@@ -2,7 +2,8 @@
     "routes": [
       {
         "src": "/mission/:id",
-        "dest": "/mission/:id"
+        "dest": "/mission/:id",
+        "renderMode": "dynamic"
       }
     ]
   }
