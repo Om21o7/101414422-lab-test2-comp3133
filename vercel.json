@@ -1,10 +1,5 @@
 {
-    "routes": [
-      {
-        "src": "/mission/:id",
-        "dest": "/mission/:id",
-        "renderMode": "dynamic"
-      }
+    "rewrites": [
+      { "source": "/(.*)", "destination": "/index.html" }
     ]
   }
-  
