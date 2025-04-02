@@ -3,7 +3,7 @@
       {
         "src": "/mission/:id",
         "dest": "/mission/[id].html",
-        "getPrerenderParams": "getMissionIds"
+        "renderMode": "dynamic"
       }
     ]
   }
